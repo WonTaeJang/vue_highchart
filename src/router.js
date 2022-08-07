@@ -3,7 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes = [
   {
     path: "/list",
-    component: import('@/components/HelloWorld.vue'),
+    component: import('@/components/LineChart.vue'),
   }
 ];
 
