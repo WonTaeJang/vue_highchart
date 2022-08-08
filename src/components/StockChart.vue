@@ -3,26 +3,12 @@
 </template>
 
 <script>
-import { Chart } from "highcharts-vue";
+import { stockChart } from "highcharts-vue";
 
 export default {
   data() {
     return {
       chartOptions: {
-        chart: {
-          type: "bar",
-        },
-        title: {
-          text: "Fruit Consumption",
-        },
-        xAxis: {
-          categories: ["Apples", "Bananas", "Oranges"],
-        },
-        yAxis: {
-          title: {
-            text: "Fruit eaten",
-          },
-        },
         series: [
           {
             name: "Jane",
@@ -37,7 +23,7 @@ export default {
     };
   },
   components: {
-    highcharts: Chart,
+    highcharts: stockChart,
   },
 };
 </script>
