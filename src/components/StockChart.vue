@@ -1,9 +1,13 @@
 <template>
-  <highcharts :options="chartOptions"></highcharts>
+  <highcharts :constructorType="'stockChart'" :options="chartOptions"></highcharts>
 </template>
 
 <script>
+import Highcharts from 'highcharts'
+import stockInit from 'highcharts/modules/stock'
 import { stockChart } from "highcharts-vue";
+
+
 
 export default {
   data() {
@@ -25,6 +29,9 @@ export default {
   components: {
     highcharts: stockChart,
   },
+  created(){
+    stockInit(Highcharts)
+  }
 };
 </script>
 
