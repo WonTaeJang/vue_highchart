@@ -6,7 +6,7 @@ const routes = [
     component: () => import('@/components/Home.vue'),
   },
   {
-    path: "/line",
+    path: "/concepts",
     component: () => import('@/components/LineChart.vue'),
   },
   {
