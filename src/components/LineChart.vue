@@ -1,16 +1,16 @@
 <template>
   <div class="sidenav">
-    <a @Click="step = 1">Title and subtitle</a>
-    <a href="#about">Axes</a>
-    <a @Click="step = 0">Series</a>
-    <a href="#about">Tooltip</a>
-    <a href="#services">Legend</a>
-    <a href="#clients">Plot bands and plot lines</a>
+    <a :class="{highlight: step == 0, pointer: true}" @Click="clickSide(0)">Title and subtitle</a>
+    <a :class="{highlight: step == 1, pointer: true}" @Click="clickSide(1)">Axes</a>
+    <a :class="{highlight: step == 2, pointer: true}" @Click="clickSide(2)">Series</a>
+    <a :class="{highlight: step == 3, pointer: true}" @Click="clickSide(3)">Tooltip</a>
+    <a :class="{highlight: step == 4, pointer: true}" @Click="clickSide(4)">Legend</a>
+    <a :class="{highlight: step == 5, pointer: true}" @Click="clickSide(5)">Plot bands and plot lines</a>
   </div>
 
   <div class="main">
-    <div v-if="step == 1"><Title/></div>
-    <div v-if="step == 0"><Series/></div>
+    <div v-if="step == 0"><Title/></div>
+    <div v-if="step == 2"><Series/></div>
   </div>
 </template>
 
@@ -28,13 +28,31 @@ export default {
     Series,
     Title,
   },
+  methods:{
+    clickSide(el){
+      this.step = el;
+    }
+  },
   created() {
-
+    
   },
 };
 </script>
 
 <style scoped>
+.pointer {
+  cursor: pointer;
+  color: #818181;
+}
+
+.sidenav a:hover {
+  color: black;
+}
+
+.highlight {
+  color: black;
+}
+
 .sidenav {
   height: 100%;
   width: 200px;
@@ -51,12 +69,7 @@ export default {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 20px;
-  color: #818181;
   display: block;
-}
-
-.sidenav a:hover {
-  color: black;
 }
 
 .main {
