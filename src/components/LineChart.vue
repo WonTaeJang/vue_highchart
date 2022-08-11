@@ -10,13 +10,19 @@
 
   <div class="main">
     <div v-if="step == 0"><Title/></div>
+    <div v-if="step == 1"><Axes/></div>
     <div v-if="step == 2"><Series/></div>
+    <div v-if="step == 3"><Tooltip/></div>
+    <div v-if="step == 4"><Legend/></div>
   </div>
 </template>
 
 <script>
 import Series from '@/components/concepts/Series.vue'
+import Axes from '@/components/concepts/Axes.vue'
 import Title from '@/components/concepts/TitleSubTitle.vue'
+import Tooltip from '@/components/concepts/ToolTip.vue'
+import Legend from '@/components/concepts/Legend.vue'
 
 export default {
   data(){
@@ -27,6 +33,9 @@ export default {
   components : {
     Series,
     Title,
+    Axes,
+    Tooltip,
+    Legend,
   },
   methods:{
     clickSide(el){
