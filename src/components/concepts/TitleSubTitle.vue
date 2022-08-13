@@ -8,6 +8,11 @@
       style="width: 100%"
     />
 
+    <p>The title and subtitle can also be moved around by the default attributes of the title and subtitle options (align, float, margin, verticalAlign, x, y).
+       For all available options, see 
+       <a href="https://api.highcharts.com/highcharts/title?_ga=2.262749132.1359665401.1660392760-512425022.1659867340">options.title</a> and 
+       <a href="https://api.highcharts.com/highcharts/subtitle?_ga=2.262749132.1359665401.1660392760-512425022.1659867340">options.subtitle.</a></p>
+
     <div style="border-bottom:2px solid gray;"></div>
     
     <div style="width: 800px; height: 400px">
@@ -17,31 +22,15 @@
     <div style="border-bottom:1px solid gray;"></div>
     <h2>title</h2>
     <h3>1. align</h3>
-    <div class="form-check form-check-inline">
-      <input @click="changeTitleAlign(0)" class="form-check-input" type="radio" name="titleAlignRadio" id="titleAlignRadio1">
-      <label class="form-check-label" for="titleAlignRadio1">{{arr[0]}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input @click="changeTitleAlign(1)" class="form-check-input" type="radio" name="titleAlignRadio" id="titleAlignRadio2" checked>
-      <label class="form-check-label" for="titleAlignRadio2">{{arr[1]}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input @click="changeTitleAlign(2)" class="form-check-input" type="radio" name="titleAlignRadio" id="titleAlignRadio3">
-      <label class="form-check-label" for="titleAlignRadio3">{{arr[2]}}</label>
+    <div class="form-check form-check-inline" v-for="(item,i) in arr" :key="i">
+      <input @click="changeTitleAlign(i)" class="form-check-input" type="radio" name="titleAlignRadio" :ref="'titleAlignRadio' + i">
+      <label class="form-check-label">{{item}}</label>
     </div>
 
     <h3>2. margin</h3>
-    <div class="form-check form-check-inline">
-      <input @click="changeMargin(0)" class="form-check-input" type="radio" name="marginRadio" id="marginRadio1">
-      <label class="form-check-label" for="marginRadio1">{{marginArr[0]}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input @click="changeMargin(1)" class="form-check-input" type="radio" name="marginRadio" id="marginRadio2" checked>
-      <label class="form-check-label" for="marginRadio2">{{marginArr[1]}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input @click="changeMargin(2)" class="form-check-input" type="radio" name="marginRadio" id="marginRadio3">
-      <label class="form-check-label" for="marginRadio3">{{marginArr[2]}}</label>
+    <div class="form-check form-check-inline" v-for="(item,i) in marginArr" :key="i">
+      <input @click="changeMargin(i)" class="form-check-input" type="radio" name="marginRadio" :id="'marginRadio' + i" :ref="'marginRadio' + i">
+      <label class="form-check-label">{{item}}</label>
     </div>
 
     <h3>3. verticalAlign</h3>
@@ -50,24 +39,21 @@
       <label class="form-check-label">{{item}}</label>
     </div>
 
+    <h3>4. color</h3>
+    <div class="form-check form-check-inline" v-for="(item,i) in colorArr" :key="i">
+      <input @click="changeColor(i)" class="form-check-input" type="radio" name="colorRadio" :ref="'colorRadio' + i">
+      <label class="form-check-label">{{item}}</label>
+    </div>
+
     <div style="border-bottom:1px solid gray;"></div>
 
     <h2>subtitle</h2>
-    <h3>1. align</h3>
-    <div class="form-check form-check-inline">
-      <input @click="changeSubTitleAlign(0)" class="form-check-input" type="radio" name="subtitleAlignRadio" id="subtitleAlignRadio1">
-      <label class="form-check-label" for="subtitleAlignRadio1">{{arr[0]}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input @click="changeSubTitleAlign(1)" class="form-check-input" type="radio" name="subtitleAlignRadio" id="subtitleAlignRadio2" checked>
-      <label class="form-check-label" for="subtitleAlignRadio2">{{arr[1]}}</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input @click="changeSubTitleAlign(2)" class="form-check-input" type="radio" name="subtitleAlignRadio" id="subtitleAlignRadio3">
-      <label class="form-check-label" for="subtitleAlignRadio3">{{arr[2]}}</label>
-    </div>
 
-    <button @click="change">test</button>
+    <h3>1. align</h3>
+    <div class="form-check form-check-inline" v-for="(item,i) in arr" :key="i">
+      <input @click="changeSubTitleAlign(i)" class="form-check-input" type="radio" name="subtitleAlignRadio" :id="'subtitleAlignRadio' + i" :ref="'subtitleAlignRadio' + i">
+      <label class="form-check-label">{{item}}</label>
+    </div>
   </div>
 </template>
 
@@ -81,6 +67,7 @@ export default {
       arr : ['left', 'center', 'right'],
       marginArr : [0, 15, 50],
       verticalArr : ['top', 'middle', 'bottom'],
+      colorArr : ['black', 'red', 'blue'],
       chartOptions: {
         chart: {
         },
@@ -130,8 +117,9 @@ export default {
     },
     changeVertical(n){
       this.chartOptions.title.verticalAlign = this.verticalArr[n];
-
-      
+    },
+    changeColor(n){
+      this.chartOptions.title.style.color = this.colorArr[n] ;
     }
   },
   components: {
@@ -144,7 +132,11 @@ export default {
     // 초기화
     if(this.cnt == 0)
     {
+      this.$refs.titleAlignRadio1[0].checked = true
       this.$refs.verticalRadio0[0].checked = true
+      this.$refs.marginRadio0[0].checked = true
+      this.$refs.subtitleAlignRadio1[0].checked = true
+      this.$refs.colorRadio1[0].checked = true
 
       this.cnt++;
     }
