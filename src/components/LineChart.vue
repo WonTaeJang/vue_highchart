@@ -27,7 +27,12 @@ import Legend from '@/components/concepts/Legend.vue'
 export default {
   data(){
     return {
-      step: 0,
+      step: this.$store.state.localStore.step,
+    }
+  },
+  computed: {
+    getStep(){
+      return this.$store.state.localStore.step;
     }
   },
   components : {
@@ -39,7 +44,8 @@ export default {
   },
   methods:{
     clickSide(el){
-      this.step = el;
+      this.$store.commit("setStep", el);
+      this.step = this.$store.state.localStore.step;
     }
   },
   created() {
