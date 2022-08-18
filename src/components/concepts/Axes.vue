@@ -1,5 +1,14 @@
 <template>
-  <div>Axes</div>
+  <div>
+    <h2>Axes</h2> 
+
+    <img
+      src="../../assets/axis_description.png"
+      alt="highcharts"
+      style="width: 100%"
+    />
+
+  </div>
 </template>
 
 <script>
