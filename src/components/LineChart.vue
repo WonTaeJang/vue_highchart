@@ -1,19 +1,19 @@
 <template>
   <div class="sidenav">
-    <a :class="{highlight: step == 0, pointer: true}" @Click="clickSide(0)">Title and subtitle</a>
-    <a :class="{highlight: step == 1, pointer: true}" @Click="clickSide(1)">Axes</a>
-    <a :class="{highlight: step == 2, pointer: true}" @Click="clickSide(2)">Series</a>
-    <a :class="{highlight: step == 3, pointer: true}" @Click="clickSide(3)">Tooltip</a>
-    <a :class="{highlight: step == 4, pointer: true}" @Click="clickSide(4)">Legend</a>
-    <a :class="{highlight: step == 5, pointer: true}" @Click="clickSide(5)">Plot bands and plot lines</a>
+    <a :class="{highlight: getStep == 0, pointer: true}" @Click="clickSide(0)">Title and subtitle</a>
+    <a :class="{highlight: getStep == 1, pointer: true}" @Click="clickSide(1)">Axes</a>
+    <a :class="{highlight: getStep == 2, pointer: true}" @Click="clickSide(2)">Series</a>
+    <a :class="{highlight: getStep == 3, pointer: true}" @Click="clickSide(3)">Tooltip</a>
+    <a :class="{highlight: getStep == 4, pointer: true}" @Click="clickSide(4)">Legend</a>
+    <a :class="{highlight: getStep == 5, pointer: true}" @Click="clickSide(5)">Plot bands and plot lines</a>
   </div>
 
   <div class="main">
-    <div v-if="step == 0"><Title/></div>
-    <div v-if="step == 1"><Axes/></div>
-    <div v-if="step == 2"><Series/></div>
-    <div v-if="step == 3"><Tooltip/></div>
-    <div v-if="step == 4"><Legend/></div>
+    <div v-if="getStep == 0"><Title/></div>
+    <div v-if="getStep == 1"><Axes/></div>
+    <div v-if="getStep == 2"><Series/></div>
+    <div v-if="getStep == 3"><Tooltip/></div>
+    <div v-if="getStep == 4"><Legend/></div>
   </div>
 </template>
 
